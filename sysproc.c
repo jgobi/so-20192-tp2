@@ -106,3 +106,15 @@ sys_wait2(void)
 
   return wait2(retime, rutime, stime);
 }
+
+int
+sys_set_prio(void)
+{
+  int prio;
+  argint(0, &prio);
+  if (prio < 1 || prio > 3) {
+    return -1;
+  } else {
+    return set_prio(prio);
+  }
+}

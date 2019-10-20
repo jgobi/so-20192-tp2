@@ -15,3 +15,4 @@
 #define QSIZE        3  //Queue size
 #define _1TO2        5  
 #define _2TO3        5
+#define INIT_PRIO    2

@@ -16,7 +16,7 @@ struct {
 
 static struct proc *initproc;
 
-void updateTimeVariables(void){
+void update_conters(void){
   struct proc* p;
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
     switch (p->state) {
@@ -38,20 +38,20 @@ void updateTimeVariables(void){
 }
 
 void aging(){
-  int priotity;
-  for(priotity = 0; priotity < QSIZE; priotity++) {
+  int priority;
+  for(priority = 0; priority < QSIZE; priority++) {
     int queue_pos;
-    for(queue_pos = 0; queue_pos < ptable.size[priotity]; queue_pos++){
+    for(queue_pos = 0; queue_pos < ptable.size[priority]; queue_pos++){
       //a fila 0 eh a de prioridade 3, a fila 1 eh a de prioridade 2 e a fila 2 eh a de prioridade 1
-      if(priotity == 2 && ptable.queue[priotity][queue_pos]->state != RUNNING) {
+      if(priority == 2 && ptable.queue[priority][queue_pos]->state != RUNNING) {
         
-        if(ptable.queue[priotity][queue_pos]->agingTime > _1TO2){
+        if(ptable.queue[priority][queue_pos]->agingTime > _1TO2){
           
           //adiciona o processo na fila 1
-          ptable.queue[priotity][queue_pos]->agingTime = 0;
-          ptable.queue[priotity][queue_pos]->priority = 1;
+          ptable.queue[priority][queue_pos]->agingTime = 0;
+          ptable.queue[priority][queue_pos]->priority = 1;
           ptable.size[1]++;
-          ptable.queue[1][ptable.size[1]-1] = ptable.queue[priotity][queue_pos];
+          ptable.queue[1][ptable.size[1]-1] = ptable.queue[priority][queue_pos];
           
           //remove o processo da fila 2
           int i;
@@ -59,15 +59,15 @@ void aging(){
             ptable.queue[2][i] = ptable.queue[2][i + 1];
           }
           ptable.size[2]--;  
-        }else if(priotity == 1 && ptable.queue[priotity][queue_pos]->state != RUNNING) {
+        }else if(priority == 1 && ptable.queue[priority][queue_pos]->state != RUNNING) {
           
-          if(ptable.queue[priotity][queue_pos]->agingTime > _2TO3){
+          if(ptable.queue[priority][queue_pos]->agingTime > _2TO3){
             
             //adiciona o processo na fila 0
-            ptable.queue[priotity][queue_pos]->agingTime = 0;
-            ptable.queue[priotity][queue_pos]->priority = 0;
+            ptable.queue[priority][queue_pos]->agingTime = 0;
+            ptable.queue[priority][queue_pos]->priority = 0;
             ptable.size[0]++;
-            ptable.queue[0][ptable.size[0]-1] = ptable.queue[priotity][queue_pos];
+            ptable.queue[0][ptable.size[0]-1] = ptable.queue[priority][queue_pos];
             
             //remove o processo da fila 1
             int i;
@@ -724,4 +724,36 @@ wait2(int* retime, int* rutime, int* stime)
     // Wait for children to exit.  (See wakeup1 call in proc_exit.)
     sleep(curproc, &ptable.lock);  //DOC: wait-sleep
   }
+}
+
+int
+set_prio(int prio)
+{
+  acquire(&ptable.lock);
+
+  struct proc *p = myproc();
+  
+  int old_prio = p->priority;
+
+  //adiciona o processo na fila "prio"
+  p->agingTime = 0;
+  p->priority = prio;
+  ptable.size[QSIZE-prio]++;
+  ptable.queue[QSIZE-prio][ptable.size[QSIZE-prio]-1] = p;
+  
+  //remove o processo da fila anterior
+  int i;
+  for(i = 0; i < ptable.size[QSIZE-old_prio]; i++) {
+    if (ptable.queue[QSIZE-old_prio][i] == p) {
+      break;
+    }
+  }
+
+  for(; i < ptable.size[QSIZE-old_prio]; i++) {
+    ptable.queue[QSIZE-old_prio][i] = ptable.queue[QSIZE-old_prio][i + 1];
+  }
+  ptable.size[QSIZE-old_prio]--;
+
+  release(&ptable.lock);
+  return 0;
 }

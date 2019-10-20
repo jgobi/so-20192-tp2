@@ -122,8 +122,10 @@ void            wakeup(void*);
 void            yield(void);
 int             cps(void);
 int             wait2(int*, int*, int*);
-void updateTimeVariables(void);
-void aging(void);
+int             set_prio(int);
+
+void            update_conters(void);
+void            aging(void);
 
 // swtch.S
 void            swtch(struct context**, struct context*);
