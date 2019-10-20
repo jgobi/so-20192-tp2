@@ -89,3 +89,20 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+int
+sys_cps(void)
+{
+  return cps();
+}
+
+int
+sys_wait2(void)
+{
+  int *retime, *rutime, *stime;
+  argptr(0, (void*)&retime, sizeof(retime));
+  argptr(1, (void*)&rutime, sizeof(rutime));
+  argptr(2, (void*)&stime,  sizeof(stime));
+
+  return wait2(retime, rutime, stime);
+}
