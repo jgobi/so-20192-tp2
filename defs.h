@@ -123,8 +123,9 @@ void            yield(void);
 int             cps(void);
 int             wait2(int*, int*, int*);
 int             set_prio(int);
+void            yield(void);
 
-void            update_conters(void);
+void            update_counters(void);
 void            aging(void);
 
 // swtch.S

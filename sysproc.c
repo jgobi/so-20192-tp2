@@ -118,3 +118,10 @@ sys_set_prio(void)
     return set_prio(prio);
   }
 }
+
+int
+sys_yield(void)
+{
+  yield();
+  return 0;
+}

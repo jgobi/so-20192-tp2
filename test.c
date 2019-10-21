@@ -10,7 +10,7 @@ main(int argc, char *argv[])
   if(fork() == 0) {
     int i;
     for(i=0; i < 100; i++) {
-      sleep(3);
+      sleep(1);
     }
     exit();
   } else {

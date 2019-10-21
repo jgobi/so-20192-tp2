@@ -12,7 +12,7 @@
 #define NBUF         (MAXOPBLOCKS*3)  // size of disk block cache
 #define FSSIZE       1000  // size of file system in blocks
 #define INTERV       5
-#define QSIZE        3  //Queue size
+#define QNUMBER        3  //Queue size
 #define _1TO2        5  
 #define _2TO3        5
 #define INIT_PRIO    2

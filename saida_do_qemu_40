@@ -1,0 +1,329 @@
+qemu-system-i386 -serial mon:stdio -drive file=fs.img,index=1,media=disk,format=raw -drive file=xv6.img,index=0,media=disk,format=raw -smp 2 -m 512 
+xv6...
+cpu1: starting 1
+cpu0: starting 0
+sb: size 1000 nblocks 941 ninodes 200 nlog 30 logstart 2 inodestart 32 bmap start 58
+init: starting sh
+$ sanity 40
+fork error
+pid: 18 - CPU-Bound
+retime: 1250
+rutime: 118
+stime: 0
+
+pid: 9 - CPU-Bound
+retime: 1364
+rutime: 112
+stime: 0
+
+pid: 12 - CPU-Bound
+retime: 1367
+rutime: 113
+stime: 0
+
+pid: 6 - CPU-Bound
+retime: 1528
+rutime: 131
+stime: 0
+
+pid: 36 - CPU-Bound
+retime: 1442
+rutime: 119
+stime: 0
+
+pid: 21 - CPU-Bound
+retime: 1563
+rutime: 124
+stime: 0
+
+pid: 24 - CPU-Bound
+retime: 1595
+rutime: 132
+stime: 0
+
+pid: 33 - CPU-Bound
+retime: 1572
+rutime: 116
+stime: 0
+
+pid: 39 - CPU-Bound
+retime: 1592
+rutime: 130
+stime: 0
+
+pid: 30 - CPU-Bound
+retime: 1602
+rutime: 139
+stime: 0
+
+pid: 42 - CPU-Bound
+retime: 1573
+rutime: 132
+stime: 0
+
+pid: 51 - CPU-Bound
+retime: 1569
+rutime: 123
+stime: 0
+
+pid: 54 - CPU-Bound
+retime: 1567
+rutime: 109
+stime: 0
+
+pid: 57 - CPU-Bound
+retime: 1574
+rutime: 130
+stime: 0
+
+pid: 63 - CPU-Bound
+retime: 1526
+rutime: 124
+stime: 0
+
+pid: 27 - CPU-Bound
+retime: 1768
+rutime: 148
+stime: 0
+
+pid: 60 - CPU-Bound
+retime: 1630
+rutime: 139
+stime: 0
+
+pid: 15 - CPU-Bound
+retime: 1899
+rutime: 142
+stime: 0
+
+pid: 45 - CPU-Bound
+retime: 1840
+rutime: 144
+stime: 0
+
+pid: 48 - CPU-Bound
+retime: 1949
+rutime: 172
+stime: 0
+
+pid: 5 - IO-Bound
+retime: 2321
+rutime: 0
+stime: 100
+
+pid: 8 - IO-Bound
+retime: 2320
+rutime: 0
+stime: 100
+
+pid: 11 - IO-Bound
+retime: 2327
+rutime: 0
+stime: 100
+
+pid: 14 - IO-Bound
+retime: 2337
+rutime: 0
+stime: 100
+
+pid: 17 - IO-Bound
+retime: 2336
+rutime: 0
+stime: 100
+
+pid: 20 - IO-Bound
+retime: 2335
+rutime: 0
+stime: 100
+
+pid: 23 - IO-Bound
+retime: 2332
+rutime: 0
+stime: 100
+
+pid: 26 - IO-Bound
+retime: 2330
+rutime: 0
+stime: 100
+
+pid: 29 - IO-Bound
+retime: 2318
+rutime: 0
+stime: 100
+
+pid: 32 - IO-Bound
+retime: 2327
+rutime: 0
+stime: 100
+
+pid: 35 - IO-Bound
+retime: 2326
+rutime: 0
+stime: 100
+
+pid: 38 - IO-Bound
+retime: 2325
+rutime: 0
+stime: 100
+
+pid: 41 - IO-Bound
+retime: 2298
+rutime: 0
+stime: 100
+
+pid: 44 - IO-Bound
+retime: 2297
+rutime: 0
+stime: 100
+
+pid: 47 - IO-Bound
+retime: 2295
+rutime: 1
+stime: 100
+
+pid: 50 - IO-Bound
+retime: 2303
+rutime: 2
+stime: 100
+
+pid: 53 - IO-Bound
+retime: 2238
+rutime: 1
+stime: 100
+
+pid: 56 - IO-Bound
+retime: 2237
+rutime: 2
+stime: 100
+
+pid: 59 - IO-Bound
+retime: 2191
+rutime: 0
+stime: 100
+
+pid: 62 - IO-Bound
+retime: 2189
+rutime: 1
+stime: 100
+
+pid: 16 - S-Bound
+retime: 2840
+rutime: 139
+stime: 0
+
+pid: 28 - S-Bound
+retime: 2817
+rutime: 164
+stime: 0
+
+pid: 19 - S-Bound
+retime: 2863
+rutime: 182
+stime: 0
+
+pid: 25 - S-Bound
+retime: 2858
+rutime: 159
+stime: 0
+
+pid: 52 - S-Bound
+retime: 2762
+rutime: 153
+stime: 0
+
+pid: 55 - S-Bound
+retime: 2721
+rutime: 153
+stime: 0
+
+pid: 7 - S-Bound
+retime: 2919
+rutime: 157
+stime: 0
+
+pid: 13 - S-Bound
+retime: 2886
+rutime: 180
+stime: 0
+
+pid: 43 - S-Bound
+retime: 2822
+rutime: 156
+stime: 0
+
+pid: 10 - S-Bound
+retime: 2923
+rutime: 166
+stime: 0
+
+pid: 4 - S-Bound
+retime: 2945
+rutime: 148
+stime: 0
+
+pid: 22 - S-Bound
+retime: 2900
+rutime: 181
+stime: 0
+
+pid: 31 - S-Bound
+retime: 2874
+rutime: 162
+stime: 0
+
+pid: 34 - S-Bound
+retime: 2867
+rutime: 165
+stime: 0
+
+pid: 49 - S-Bound
+retime: 2831
+rutime: 185
+stime: 0
+
+pid: 64 - S-Bound
+retime: 2693
+rutime: 170
+stime: 0
+
+pid: 40 - S-Bound
+retime: 2842
+rutime: 181
+stime: 0
+
+pid: 58 - S-Bound
+retime: 2755
+rutime: 172
+stime: 0
+
+pid: 61 - S-Bound
+retime: 2708
+rutime: 163
+stime: 0
+
+pid: 46 - S-Bound
+retime: 2836
+rutime: 193
+stime: 0
+
+pid: 37 - S-Bound
+retime: 2872
+rutime: 203
+stime: 0
+
+CPU-Bound
+rutime mean: 64
+retime mean: 794
+stime mean: 0
+
+S-Bound
+rutime mean: 88
+retime mean: 1488
+stime mean: 0
+
+IO-Bound
+rutime mean: 0
+retime mean: 1149
+stime mean: 50
+
+$ 

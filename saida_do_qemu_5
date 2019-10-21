@@ -1,0 +1,98 @@
+qemu-system-i386 -serial mon:stdio -drive file=fs.img,index=1,media=disk,format=raw -drive file=xv6.img,index=0,media=disk,format=raw -smp 2 -m 512 
+xv6...
+cpu1: starting 1
+cpu0: starting 0
+sb: size 1000 nblocks 941 ninodes 200 nlog 30 logstart 2 inodestart 32 bmap start 58
+init: starting sh
+$ sanity 5
+pid: 9 - CPU-Bound
+retime: 310
+rutime: 109
+stime: 0
+
+pid: 15 - CPU-Bound
+retime: 325
+rutime: 123
+stime: 0
+
+pid: 18 - CPU-Bound
+retime: 324
+rutime: 129
+stime: 0
+
+pid: 6 - CPU-Bound
+retime: 357
+rutime: 143
+stime: 0
+
+pid: 12 - CPU-Bound
+retime: 366
+rutime: 141
+stime: 0
+
+pid: 5 - IO-Bound
+retime: 433
+rutime: 3
+stime: 100
+
+pid: 8 - IO-Bound
+retime: 434
+rutime: 1
+stime: 100
+
+pid: 11 - IO-Bound
+retime: 427
+rutime: 3
+stime: 100
+
+pid: 14 - IO-Bound
+retime: 415
+rutime: 8
+stime: 100
+
+pid: 17 - IO-Bound
+retime: 417
+rutime: 1
+stime: 100
+
+pid: 4 - S-Bound
+retime: 600
+rutime: 149
+stime: 0
+
+pid: 7 - S-Bound
+retime: 590
+rutime: 163
+stime: 0
+
+pid: 10 - S-Bound
+retime: 595
+rutime: 154
+stime: 0
+
+pid: 16 - S-Bound
+retime: 559
+rutime: 168
+stime: 0
+
+pid: 13 - S-Bound
+retime: 567
+rutime: 200
+stime: 0
+
+CPU-Bound
+rutime mean: 129
+retime mean: 336
+stime mean: 0
+
+S-Bound
+rutime mean: 166
+retime mean: 582
+stime mean: 0
+
+IO-Bound
+rutime mean: 3
+retime mean: 425
+stime mean: 100
+
+$ 

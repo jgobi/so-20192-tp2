@@ -10,13 +10,13 @@
 struct {
   struct spinlock lock;
   struct proc proc[NPROC];
-  struct proc* queue[QSIZE][NPROC];
-  int size[QSIZE]; //number of process in each queue
+  struct proc* queue[QNUMBER][NPROC];
+  int size[QNUMBER]; //number of process in each queue
 } ptable;
 
 static struct proc *initproc;
 
-void update_conters(void){
+void update_counters(void){
   struct proc* p;
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
     switch (p->state) {
@@ -39,7 +39,7 @@ void update_conters(void){
 
 void aging(){
   int priority;
-  for(priority = 0; priority < QSIZE; priority++) {
+  for(priority = 0; priority < QNUMBER; priority++) {
     int queue_pos;
     for(queue_pos = 0; queue_pos < ptable.size[priority]; queue_pos++){
       //a fila 0 eh a de prioridade 3, a fila 1 eh a de prioridade 2 e a fila 2 eh a de prioridade 1
@@ -95,7 +95,7 @@ pinit(void)
   
   //initializing all queues sizes
   int i;
-  for(i = 0; i < QSIZE; i++){
+  for(i = 0; i < QNUMBER; i++){
     ptable.size[i] = 0;
   }
 
@@ -431,7 +431,7 @@ scheduler(void)
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
      int priority;
-        for(priority = 0; priority < QSIZE; priority++) {
+        for(priority = 0; priority < QNUMBER; priority++) {
             if(ptable.size[priority] > 0) {
                 p = ptable.queue[priority][0];
                 int i;
@@ -682,7 +682,7 @@ int
 wait2(int* retime, int* rutime, int* stime)
 {
   struct proc *p;
-  int havekids;
+  int havekids, pid;
   struct proc *curproc = myproc();
   
   acquire(&ptable.lock);
@@ -698,7 +698,7 @@ wait2(int* retime, int* rutime, int* stime)
         *retime = p->retime;
         *rutime = p->rutime;
         *stime = p->stime;
-
+        pid = p->pid;
         kfree(p->kstack);
         p->kstack = 0;
         freevm(p->pgdir);
@@ -711,7 +711,7 @@ wait2(int* retime, int* rutime, int* stime)
         p->rutime = 0;
         p->stime = 0;
         release(&ptable.lock);
-        return 0;
+        return pid;
       }
     }
 
@@ -738,22 +738,29 @@ set_prio(int prio)
   //adiciona o processo na fila "prio"
   p->agingTime = 0;
   p->priority = prio;
-  ptable.size[QSIZE-prio]++;
-  ptable.queue[QSIZE-prio][ptable.size[QSIZE-prio]-1] = p;
+  ptable.size[QNUMBER-prio]++;
+  ptable.queue[QNUMBER-prio][ptable.size[QNUMBER-prio]-1] = p;
   
+  cprintf("CHEGUEI 1");
   //remove o processo da fila anterior
   int i;
-  for(i = 0; i < ptable.size[QSIZE-old_prio]; i++) {
-    if (ptable.queue[QSIZE-old_prio][i] == p) {
+  for(i = 0; i < ptable.size[QNUMBER-old_prio]; i++) {
+    if (ptable.queue[QNUMBER-old_prio][i] == p) {
       break;
     }
   }
 
-  for(; i < ptable.size[QSIZE-old_prio]; i++) {
-    ptable.queue[QSIZE-old_prio][i] = ptable.queue[QSIZE-old_prio][i + 1];
+  cprintf("CHEGUEI 2");
+
+  for(; i < ptable.size[QNUMBER-old_prio]; i++) {
+    ptable.queue[QNUMBER-old_prio][i] = ptable.queue[QNUMBER-old_prio][i + 1];
   }
-  ptable.size[QSIZE-old_prio]--;
+  ptable.size[QNUMBER-old_prio]--;
+
+  cprintf("CHEGUEI 3");
 
   release(&ptable.lock);
+  cprintf("CHEGUEI 4");
+
   return 0;
 }

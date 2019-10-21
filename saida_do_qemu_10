@@ -1,0 +1,173 @@
+qemu-system-i386 -serial mon:stdio -drive file=fs.img,index=1,media=disk,format=raw -drive file=xv6.img,index=0,media=disk,format=raw -smp 2 -m 512 
+xv6...
+cpu1: starting 1
+cpu0: starting 0
+sb: size 1000 nblocks 941 ninodes 200 nlog 30 logstart 2 inodestart 32 bmap start 58
+init: starting sh
+$ sanity 10
+pid: 6 - CPU-Bound
+retime: 656
+rutime: 118
+stime: 0
+
+pid: 12 - CPU-Bound
+retime: 636
+rutime: 112
+stime: 0
+
+pid: 15 - CPU-Bound
+retime: 747
+rutime: 125
+stime: 0
+
+pid: 21 - CPU-Bound
+retime: 748
+rutime: 121
+stime: 0
+
+pid: 24 - CPU-Bound
+retime: 715
+rutime: 123
+stime: 0
+
+pid: 9 - CPU-Bound
+retime: 807
+rutime: 138
+stime: 0
+
+pid: 27 - CPU-Bound
+retime: 775
+rutime: 118
+stime: 0
+
+pid: 18 - CPU-Bound
+retime: 839
+rutime: 143
+stime: 0
+
+pid: 30 - CPU-Bound
+retime: 805
+rutime: 138
+stime: 0
+
+pid: 33 - CPU-Bound
+retime: 816
+rutime: 131
+stime: 0
+
+pid: 5 - IO-Bound
+retime: 975
+rutime: 2
+stime: 100
+
+pid: 8 - IO-Bound
+retime: 980
+rutime: 0
+stime: 100
+
+pid: 11 - IO-Bound
+retime: 976
+rutime: 0
+stime: 100
+
+pid: 14 - IO-Bound
+retime: 982
+rutime: 0
+stime: 100
+
+pid: 17 - IO-Bound
+retime: 976
+rutime: 1
+stime: 100
+
+pid: 20 - IO-Bound
+retime: 969
+rutime: 3
+stime: 100
+
+pid: 23 - IO-Bound
+retime: 966
+rutime: 5
+stime: 100
+
+pid: 26 - IO-Bound
+retime: 934
+rutime: 2
+stime: 100
+
+pid: 29 - IO-Bound
+retime: 940
+rutime: 0
+stime: 100
+
+pid: 32 - IO-Bound
+retime: 939
+rutime: 0
+stime: 100
+
+pid: 4 - S-Bound
+retime: 1257
+rutime: 160
+stime: 0
+
+pid: 7 - S-Bound
+retime: 1329
+rutime: 176
+stime: 0
+
+pid: 19 - S-Bound
+retime: 1329
+rutime: 149
+stime: 0
+
+pid: 22 - S-Bound
+retime: 1323
+rutime: 148
+stime: 0
+
+pid: 10 - S-Bound
+retime: 1347
+rutime: 177
+stime: 0
+
+pid: 28 - S-Bound
+retime: 1293
+rutime: 156
+stime: 0
+
+pid: 13 - S-Bound
+retime: 1330
+rutime: 192
+stime: 0
+
+pid: 31 - S-Bound
+retime: 1282
+rutime: 173
+stime: 0
+
+pid: 16 - S-Bound
+retime: 1319
+rutime: 215
+stime: 0
+
+pid: 25 - S-Bound
+retime: 1281
+rutime: 194
+stime: 0
+
+CPU-Bound
+rutime mean: 126
+retime mean: 754
+stime mean: 0
+
+S-Bound
+rutime mean: 174
+retime mean: 1309
+stime mean: 0
+
+IO-Bound
+rutime mean: 1
+retime mean: 963
+stime mean: 100
+
+$ 
